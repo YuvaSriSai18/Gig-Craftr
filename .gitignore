@@ -1,7 +1,10 @@
 SIH-PPT.pptx
 ~$SIH-PPT.pptx
+<<<<<<< HEAD
 node_modules
 .env
 .local
 dist
 vscode
+=======
+>>>>>>> 38063dbb323db69a8faa77b8f7ee82014c539ec3
