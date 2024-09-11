@@ -1,2 +1,7 @@
 SIH-PPT.pptx
 ~$SIH-PPT.pptx
+node_modules
+.env
+.local
+dist
+vscode
