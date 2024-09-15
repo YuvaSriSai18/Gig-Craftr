@@ -20,7 +20,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = ["Home", "Find Work", "Find Freelancers"];
 
 export default function Navbar(props: Props) {
   const { window } = props;
@@ -33,18 +33,55 @@ export default function Navbar(props: Props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        <Box
+          component={"img"}
+          src={logo}
+          sx={{
+            width: "380px",
+            margin: "0",
+            cursor: "pointer",
+          }}
+        />
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton sx={{ textAlign: "left" }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+
+      <Box display={"flex"} flexDirection={"column"} mt={2}>
+        <Button
+          sx={{
+            textTransform: "none",
+            backgroundColor: "#1d7fda",
+            padding: "8px 12px",
+            borderRadius: "20px",
+            color: "#fff",
+            margin: "0px 30px",
+          }}
+        >
+          Post a Project
+        </Button>
+        <Button
+          sx={{
+            color: "#5e5b5b",
+            fontSize: "16px",
+            marginRight: "10px",
+            textTransform: "none",
+            fontWeight: "300",
+            marginTop: 2,
+            textDecoration: "underline",
+          }}
+          disableRipple
+        >
+          Sign In
+        </Button>
+      </Box>
     </Box>
   );
 
@@ -52,12 +89,21 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", maxWidth: { xs: "98%", sm: "99%" } }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar
+        component="div"
+        position="static"
+        sx={{
+          width: "100%",
+          height: "60px",
+          margin: "20px 10px",
+          borderRadius: "30px",
+          backgroundColor: "#fff",
+        }}
+      >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -70,18 +116,58 @@ export default function Navbar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <Box component={"img"} src={logo} 
-                sx={{
-                    width:'100px'
-                }}
+            <Box
+              component={"img"}
+              src={logo}
+              sx={{
+                width: "230px",
+                cursor: "pointer",
+              }}
             />
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box sx={{ display: { xs: "none", sm: "block" }  }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
+              <Button
+                key={item}
+                sx={{
+                  color: "#5e5b5b",
+                  fontWeight: 300,
+                  fontSize: "16px",
+                  marginRight: "10px",
+                  position: "relative",
+                  overflow: "hidden",
+                  textTransform: "none", // Optional: Prevents uppercase transformation
+                }}
+                disableRipple
+              >
                 {item}
               </Button>
             ))}
+            <Button
+              sx={{
+                textTransform: "none",
+                backgroundColor: "#1d7fda",
+                padding: "8px 12px",
+                borderRadius: "20px",
+                color: "#fff",
+                marginRight: "10px",
+                fontSize: "14px",
+              }}
+            >
+              Post a Project
+            </Button>
+            <Button
+              sx={{
+                color: "#5e5b5b",
+                fontSize: "16px",
+                marginRight: "10px",
+                textTransform: "none",
+                fontWeight: "300",
+              }}
+              disableRipple
+            >
+              Sign In
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
