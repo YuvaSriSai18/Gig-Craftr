@@ -1,156 +1,97 @@
-import React, { useState, useRef } from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import StarIcon from "@mui/icons-material/Star";
+import React, { useState } from "react";
+import { Card, CardContent, Typography, Avatar, Button } from "@mui/material";
+import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
+import { Box } from "@mui/system";
+import {freelancers} from '../../Constants/freelancer.ts'
 
-const jobs = [
-  {
-    title: "Graphic&Design",
-    description: "Need a Graphic Designer to design a social media platform.",
-    time: "10 minutes ago",
-    bid: "$300",
-    rating: 4.5,
-  },
-  {
-    title: "C++ Developer",
-    description:
-      "I want a C++ Developer who has strong foundation in data structures.",
-    time: "12 minutes ago",
-    bid: "$200",
-    rating: 3.5,
-  },
-  {
-    title: "React Developer",
-    description:
-      "Need an experienced Full Stack Developer to build e-commerce website.",
-    time: "19 minutes ago",
-    bid: "$100",
-    rating: 4.0,
-  },
-  {
-    title: "C Developer",
-    description:
-      "I want a C Developer to help with an embedded system project.",
-    time: "20 minutes ago",
-    bid: "$500",
-    rating: 4.2,
-  },
-];
+const VerticalCarousel = () => {
+  const [scrollIndex, setScrollIndex] = useState(0);
 
-const Carousel: React.FC = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const handleScrollUp = () => {
+    setScrollIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
+  };
 
-  const handleScroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 500; // Increased scroll amount for a larger movement
-      const newPosition =
-        scrollPosition + (direction === "left" ? -scrollAmount : scrollAmount);
-      setScrollPosition(newPosition);
-      scrollRef.current.scrollTo({
-        left: newPosition,
-        behavior: "smooth",
-      });
-    }
+  const handleScrollDown = () => {
+    setScrollIndex((prevIndex) =>
+      prevIndex < Math.ceil(freelancers.length / 3) - 1 ? prevIndex + 1 : prevIndex
+    );
   };
 
   return (
-    <Container sx={{ marginTop: "5rem", position: "relative" }}>
-      <Typography
-        variant="h3"
-        sx={{ fontWeight: "bold", marginBottom: "2rem", textAlign: "center" }}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "600px", // Adjust height as needed
+        width: "350px",  // Adjust width as needed
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "#f0f4ff",
+        padding: "10px",
+        borderRadius: "15px",
+      }}
+    >
+      <Button
+        onClick={handleScrollUp}
+        variant="contained"
+        sx={{ position: "absolute", top: 0, zIndex: 1 }}
       >
-        Recently Posted Jobs
-      </Typography>
-      <Box sx={{ position: "relative", overflow: "hidden" }}>
-        <Grid container alignItems="center" justifyContent="center" spacing={3}>
-          <Grid
-            item
-            xs={1}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "10px",
-              transform: "translateY(-50%)",
-            }}
-          >
-            <IconButton onClick={() => handleScroll("left")}>
-              <ArrowBackIosIcon sx={{ fontSize: 40 }} />
-            </IconButton>
-          </Grid>
-          <Grid item xs={10}>
-            <Box
-              ref={scrollRef}
+        <ArrowUpward />
+      </Button>
+
+      <Box
+        sx={{
+          overflowY: "hidden",
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            transform: `translateY(-${scrollIndex * 100}%)`,
+            transition: "transform 0.3s ease-in-out",
+          }}
+        >
+          {freelancers.slice(scrollIndex * 3, scrollIndex * 3 + 3).map((freelancer, index) => (
+            <Card
+              key={index}
               sx={{
-                display: "flex",
-                overflowX: "auto",
-                scrollBehavior: "smooth",
-                paddingBottom: "1rem",
-                "&::-webkit-scrollbar": { display: "none" },
+                marginBottom: "20px",
+                borderRadius: "10px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               }}
             >
-              {jobs.map((job, index) => (
-                <Card
-                  key={index}
-                  sx={{
-                    minWidth: "300px", // Increased card width
-                    maxWidth: "300px",
-                    marginRight: "1.5rem", // Increased spacing between cards
-                    flexShrink: 0,
-                    boxShadow: 6,
-                    borderRadius: "20px",
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h5" gutterBottom>
-                      {job.title}
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary">
-                      {job.description}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      color="textSecondary"
-                      sx={{ marginTop: "0.5rem" }}
-                    >
-                      <StarIcon sx={{ color: "#ffb400", fontSize: "20px" }} />{" "}
-                      {job.rating}
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary">
-                      {job.time} | {job.bid}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ))}
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={1}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              right: "10px",
-              transform: "translateY(-50%)",
-            }}
-          >
-            <IconButton onClick={() => handleScroll("right")}>
-              <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-            </IconButton>
-          </Grid>
-        </Grid>
+              <CardContent>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  {freelancer.title}
+                </Typography>
+                <Typography variant="body2" sx={{ margin: "10px 0" }}>
+                  {freelancer.description}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {freelancer.time}
+                </Typography>
+                <Typography variant="body1" sx={{ marginTop: "10px", fontWeight: "bold" }}>
+                  Highest Bid {freelancer.bid}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
       </Box>
-    </Container>
+
+      <Button
+        onClick={handleScrollDown}
+        variant="contained"
+        sx={{ position: "absolute", bottom: 0, zIndex: 1 }}
+      >
+        <ArrowDownward />
+      </Button>
+    </Box>
   );
 };
 
-export default Carousel;
+export default VerticalCarousel;

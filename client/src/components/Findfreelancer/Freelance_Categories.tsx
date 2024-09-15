@@ -1,13 +1,8 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import {categories} from '../../Constants/categories.ts'
 
-const categories = [
-  "All Categories",
-  "Web Design",
-  "CopyWriting",
-  "Mobile Apps",
-];
 
 const Freelance_Categories = () => {
   const [Categories, setCategories] = React.useState(categories);
