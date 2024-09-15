@@ -17,6 +17,7 @@ import TurnedInOutlinedIcon from "@mui/icons-material/TurnedInOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
+import Footer from "../../components/Footer/Footer";
 
 // Define TypeScript interfaces
 interface Project {
@@ -150,7 +151,7 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
   const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
-
+  console.log(commentsOpen);
   const toggleSave = () => {
     setSaved((prev) => !prev);
   };
@@ -313,68 +314,71 @@ export default function FindWork() {
   );
 
   return (
-    <Box sx={{ padding: "2rem" }}>
-      <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
-        <TextField
-          // label="Search Projects"
-          variant="outlined"
-          fullWidth
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Search Projects" // Placeholder text
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-            sx: {
+    <>
+      <Box sx={{ padding: "2rem" }}>
+        <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
+          <TextField
+            // label="Search Projects"
+            variant="outlined"
+            fullWidth
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Search Projects" // Placeholder text
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+              sx: {
+                backgroundColor: "white", // White background
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
+                borderRadius: "8px", // Rounded corners
+                "& fieldset": {
+                  border: "none", // Remove black outline
+                },
+              },
+            }}
+          />
+          <TextField
+            select
+            label="Filter by Category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            fullWidth
+            sx={{
               backgroundColor: "white", // White background
               boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
               borderRadius: "8px", // Rounded corners
               "& fieldset": {
                 border: "none", // Remove black outline
               },
-            },
-          }}
-        />
-        <TextField
-          select
-          label="Filter by Category"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-          fullWidth
-          sx={{
-            backgroundColor: "white", // White background
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
-            borderRadius: "8px", // Rounded corners
-            "& fieldset": {
-              border: "none", // Remove black outline
-            },
-          }}
-        >
-          <MenuItem value="">All Categories</MenuItem>
-          {categories.map((category, index) => (
-            <MenuItem key={index} value={category}>
-              {category}
-            </MenuItem>
+            }}
+          >
+            <MenuItem value="">All Categories</MenuItem>
+            {categories.map((category, index) => (
+              <MenuItem key={index} value={category}>
+                {category}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Box>
+
+        <Grid container spacing={2}>
+          {filteredProjects.map((project, index) => (
+            <Grid item xs={12} key={index}>
+              <ProjectCard project={project} />
+            </Grid>
           ))}
-        </TextField>
-      </Box>
+        </Grid>
 
-      <Grid container spacing={2}>
-        {filteredProjects.map((project, index) => (
-          <Grid item xs={12} key={index}>
-            <ProjectCard project={project} />
-          </Grid>
-        ))}
-      </Grid>
-
-      <Box sx={{ marginTop: "2rem", textAlign: "center" }}>
-        <Button variant="contained" onClick={handleLoadMore}>
-          Load More Projects
-        </Button>
+        <Box sx={{ marginTop: "2rem", textAlign: "center" }}>
+          <Button variant="contained" onClick={handleLoadMore}>
+            Load More Projects
+          </Button>
+        </Box>
       </Box>
-    </Box>
+      <Footer/>
+    </>
   );
 }

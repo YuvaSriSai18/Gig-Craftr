@@ -113,7 +113,7 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ maxWidth: { xs: "98%", sm: "99%" } }}>
+    <Box sx={{ display:'flex', maxWidth: { xs: "98%", sm: "99%" } }}>
       <CssBaseline />
       <AppBar
         component="div"

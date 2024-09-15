@@ -34,6 +34,7 @@ const SignInSignUp: React.FC = () => {
   };
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    event.preventDefault()
     setTabValue(newValue);
     setEmail("");
     setPassword("");
