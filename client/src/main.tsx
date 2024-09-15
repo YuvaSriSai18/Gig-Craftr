@@ -21,10 +21,14 @@ import "@fontsource/poppins";
 //     },
 //   },
 // });
+import { Provider } from "react-redux";
+import { store } from "./reducers/store.ts";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <ThemeProvider theme={theme}>
+  <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
+  </Provider>
   // </ThemeProvider>
 );

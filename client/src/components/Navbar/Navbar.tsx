@@ -1,22 +1,26 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-
+import {
+  Menu,
+  Divider,
+  Drawer,
+  IconButton,
+  Tooltip,
+  Avatar,
+  MenuItem,
+  Toolbar,
+  Button,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  AppBar,
+  Box,
+  CssBaseline,
+} from "@mui/material";
 import logo from "../../assets/gigcrftr.png";
 import { Link } from "react-router-dom";
-
 interface Props {
   window?: () => Window;
 }
@@ -38,14 +42,40 @@ const navItems = [
   },
 ];
 
+const settings = [
+  {
+    name: "Profile",
+    path: "/profile",
+  },
+  {
+    name: "Profile 2",
+    path: "/find-work",
+  },
+  {
+    name: "Profile 3",
+    path: "/find-freelancer",
+  },
+];
 export default function Navbar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -106,6 +136,40 @@ export default function Navbar(props: Props) {
           </Button>
         </Link>
       </Box>
+
+      {/* Avatar for mobile */}
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar
+              alt="User Avatar"
+              src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+            />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar-mobile"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          {navItems.map((item, index) => (
+            <MenuItem key={index} onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{item.name}</Typography>
+            </MenuItem>
+          ))}
+        </Menu>
+      </Box>
     </Box>
   );
 
@@ -113,7 +177,7 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display:'flex', maxWidth: { xs: "98%", sm: "99%" } }}>
+    <Box sx={{ display: "flex", maxWidth: { xs: "98%", sm: "99%" } }}>
       <CssBaseline />
       <AppBar
         component="div"
@@ -151,6 +215,8 @@ export default function Navbar(props: Props) {
               />
             </Link>
           </Typography>
+
+          {/* Desktop View Avatar */}
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button
@@ -171,6 +237,7 @@ export default function Navbar(props: Props) {
                 {item.name}
               </Button>
             ))}
+
             <Link to={"/post-project"}>
               <Button
                 sx={{
@@ -186,6 +253,7 @@ export default function Navbar(props: Props) {
                 Post a Project
               </Button>
             </Link>
+
             <Link to={"/log-in"}>
               <Button
                 sx={{
@@ -200,9 +268,45 @@ export default function Navbar(props: Props) {
                 Sign In
               </Button>
             </Link>
+
+            {/* Avatar in Desktop */}
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    alt="User Avatar"
+                    src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((item, index) => (
+                  <MenuItem key={index} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{item.name}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
+
+      {/* Mobile Drawer */}
       <nav>
         <Drawer
           container={container}
