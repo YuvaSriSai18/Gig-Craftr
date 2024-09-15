@@ -134,7 +134,7 @@ const SignInSignUp: React.FC = () => {
 
         <Box display="flex" justifyContent="center" alignItems="center">
           <Grid container spacing={2} maxWidth="sm">
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Button
                 fullWidth
                 variant="outlined"
@@ -150,7 +150,7 @@ const SignInSignUp: React.FC = () => {
               </Button>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Button
                 fullWidth
                 variant="outlined"
@@ -166,13 +166,13 @@ const SignInSignUp: React.FC = () => {
               </Button>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Button
                 fullWidth
                 variant="outlined"
                 startIcon={
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                    src="https://static-00.iconduck.com/assets.00/apple-logo-icon-1661x2048-8adk63j7.png"
                     alt="Apple"
                     style={{ width: 20, height: 20 }}
                   />
@@ -182,7 +182,7 @@ const SignInSignUp: React.FC = () => {
               </Button>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Button
                 fullWidth
                 variant="outlined"

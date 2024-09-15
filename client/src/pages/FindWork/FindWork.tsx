@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-// import React from 'react'
-=======
 import React, { useState } from "react";
 import {
   Box,
@@ -20,7 +17,6 @@ import TurnedInOutlinedIcon from "@mui/icons-material/TurnedInOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
->>>>>>> 0b3194c3dbfed9e1494c58a521a53ddc3da05de8
 
 // Define TypeScript interfaces
 interface Project {
@@ -37,7 +33,8 @@ const projects: Project[] = [
   // Your project data here
   {
     title: "E-Commerce Website",
-    description: "Need an experienced Full Stack Developer to build a custom e-commerce website.",
+    description:
+      "Need an experienced Full Stack Developer to build a custom e-commerce website.",
     category: "Web Development",
     bids: 0,
     price: "750 USD",
@@ -73,7 +70,8 @@ const projects: Project[] = [
   },
   {
     title: "C++ Developer",
-    description: "I want a C++ Developer who has a strong foundation in data structures.",
+    description:
+      "I want a C++ Developer who has a strong foundation in data structures.",
     category: "Software Development",
     bids: 45,
     price: "75 USD per hour",
@@ -82,7 +80,8 @@ const projects: Project[] = [
   },
   {
     title: "Machine Learning Using Python",
-    description: "Need an experienced Python Developer who has a strong foundation in ML/AI.",
+    description:
+      "Need an experienced Python Developer who has a strong foundation in ML/AI.",
     category: "Software Development",
     bids: 90,
     price: "175 USD per hour",
@@ -171,7 +170,11 @@ function ProjectCard({ project }: ProjectCardProps) {
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>
               {project.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ marginTop: "0.5rem" }}>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ marginTop: "0.5rem" }}
+            >
               {project.description}
             </Typography>
             <Button
@@ -181,7 +184,13 @@ function ProjectCard({ project }: ProjectCardProps) {
             >
               View Project
             </Button>
-            <Box sx={{ display: "flex", alignItems: "center", marginTop: "0.5rem" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "0.5rem",
+              }}
+            >
               <Rating
                 name="read-only"
                 value={project.rating}
@@ -190,14 +199,32 @@ function ProjectCard({ project }: ProjectCardProps) {
                 icon={<StarIcon fontSize="inherit" />}
               />
               <ChatBubbleOutlineRoundedIcon
-                sx={{ marginLeft: "0.5rem", color: "grey.600", cursor: "pointer" }}
+                sx={{
+                  marginLeft: "0.5rem",
+                  color: "grey.600",
+                  cursor: "pointer",
+                }}
                 onClick={handleCommentsClick}
               />
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} sx={{ textAlign: "right", position: "relative" }}>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
-              <Typography variant="body2" sx={{ marginRight: "1rem", color: "text.secondary" }}>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            sx={{ textAlign: "right", position: "relative" }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ marginRight: "1rem", color: "text.secondary" }}
+              >
                 {project.timePosted}
               </Typography>
               <Button
@@ -213,7 +240,10 @@ function ProjectCard({ project }: ProjectCardProps) {
               </Button>
             </Box>
 
-            <Typography variant="h6" sx={{ textAlign: "right", marginTop: "2rem" }}>
+            <Typography
+              variant="h6"
+              sx={{ textAlign: "right", marginTop: "2rem" }}
+            >
               {project.bids} Bids
             </Typography>
 
@@ -232,7 +262,11 @@ function ProjectCard({ project }: ProjectCardProps) {
               <Button
                 variant="contained"
                 color="primary"
-                sx={{ marginTop: "2rem", borderRadius: "19px", alignSelf: "flex-end" }}
+                sx={{
+                  marginTop: "2rem",
+                  borderRadius: "19px",
+                  alignSelf: "flex-end",
+                }}
               >
                 Be first to bid
               </Button>
@@ -248,9 +282,16 @@ function ProjectCard({ project }: ProjectCardProps) {
 export default function FindWork() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [displayedProjects, setDisplayedProjects] = useState<Project[]>(shuffleArray(projects.slice(0, 6))); // Display first 6 projects initially
+  const [displayedProjects, setDisplayedProjects] = useState<Project[]>(
+    shuffleArray(projects.slice(0, 6))
+  ); // Display first 6 projects initially
 
-  const categories: string[] = ["Web Development", "Software Development", "Typing", "Web Design"];
+  const categories: string[] = [
+    "Web Development",
+    "Software Development",
+    "Typing",
+    "Web Design",
+  ];
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -265,9 +306,10 @@ export default function FindWork() {
     setDisplayedProjects((prev) => [...prev, ...additionalProjects]);
   };
 
-  const filteredProjects = displayedProjects.filter((project) =>
-    project.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (selectedCategory === "" || project.category === selectedCategory)
+  const filteredProjects = displayedProjects.filter(
+    (project) =>
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedCategory === "" || project.category === selectedCategory)
   );
 
   return (

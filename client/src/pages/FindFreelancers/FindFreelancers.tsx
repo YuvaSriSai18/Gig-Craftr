@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import FreelancerCard from "../../components/Findfreelancer/freelancerCard.tsx";
+import FreelancerCard from "../../components/Findfreelancer/freelancercard.tsx";
 import FreelancerSearch from "../../components/Findfreelancer/freelancersearchbar.tsx";
 import CategoryButtons from "../../components/Findfreelancer/freelanceCategory.tsx";
 
@@ -10,7 +10,7 @@ export default function FindFreelancers() {
   const [visibleFreelancers, setVisibleFreelancers] = useState(3); // Start with showing 3 freelancers
   const [noMoreEntries, setNoMoreEntries] = useState(false); // To track if no more freelancers are available
 
-  const [FreelancersList, setFreelancersList] = useState(FreelancersDummy)
+  const [FreelancersList, setFreelancersList] = useState(FreelancersDummy);
 
   const loadMore = () => {
     if (visibleFreelancers + 3 >= FreelancersList.length) {
@@ -31,9 +31,14 @@ export default function FindFreelancers() {
       </div>
       <div>
         <Box sx={{ p: 2 }}>
-          {FreelancersList.slice(0, visibleFreelancers).map((freelancer:any, index:number) => (
-            <FreelancerCard key={freelancer.id || index} freelancer={freelancer} />
-          ))}
+          {FreelancersList.slice(0, visibleFreelancers).map(
+            (freelancer: any, index: number) => (
+              <FreelancerCard
+                key={freelancer.id || index}
+                freelancer={freelancer}
+              />
+            )
+          )}
 
           {!noMoreEntries ? (
             <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>

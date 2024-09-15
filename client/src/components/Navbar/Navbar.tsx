@@ -75,32 +75,36 @@ export default function Navbar(props: Props) {
       </List>
 
       <Box display={"flex"} flexDirection={"column"} mt={2}>
-        <Button
-          sx={{
-            textTransform: "none",
-            backgroundColor: "#1d7fda",
-            padding: "8px 12px",
-            borderRadius: "20px",
-            color: "#fff",
-            margin: "0px 30px",
-          }}
-        >
-          Post a Project
-        </Button>
-        <Button
-          sx={{
-            color: "#5e5b5b",
-            fontSize: "16px",
-            marginRight: "10px",
-            textTransform: "none",
-            fontWeight: "300",
-            marginTop: 2,
-            textDecoration: "underline",
-          }}
-          disableRipple
-        >
-          Sign In
-        </Button>
+        <Link to={"/post-project"}>
+          <Button
+            sx={{
+              textTransform: "none",
+              backgroundColor: "#1d7fda",
+              padding: "8px 12px",
+              borderRadius: "20px",
+              color: "#fff",
+              margin: "0px 30px",
+            }}
+          >
+            Post a Project
+          </Button>
+        </Link>
+        <Link to={"/log-in"}>
+          <Button
+            sx={{
+              color: "#5e5b5b",
+              fontSize: "16px",
+              marginRight: "10px",
+              textTransform: "none",
+              fontWeight: "300",
+              marginTop: 2,
+              textDecoration: "underline",
+            }}
+            disableRipple
+          >
+            Sign In
+          </Button>
+        </Link>
       </Box>
     </Box>
   );
@@ -109,7 +113,7 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex", maxWidth: { xs: "98%", sm: "99%" } }}>
+    <Box sx={{ maxWidth: { xs: "98%", sm: "99%" } }}>
       <CssBaseline />
       <AppBar
         component="div"
@@ -117,7 +121,7 @@ export default function Navbar(props: Props) {
         sx={{
           width: "100%",
           height: "60px",
-          margin: "20px 10px",
+          margin: "20px 8px",
           borderRadius: "30px",
           backgroundColor: "#fff",
         }}
@@ -155,7 +159,7 @@ export default function Navbar(props: Props) {
                 to={item.path}
                 sx={{
                   color: "#5e5b5b",
-                  fontWeight: 300,
+                  fontWeight: 400,
                   fontSize: "16px",
                   marginRight: "10px",
                   position: "relative",
@@ -189,7 +193,7 @@ export default function Navbar(props: Props) {
                   fontSize: "16px",
                   marginRight: "10px",
                   textTransform: "none",
-                  fontWeight: "300",
+                  fontWeight: "400",
                 }}
                 disableRipple
               >
