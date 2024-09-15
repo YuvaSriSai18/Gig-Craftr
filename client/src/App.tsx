@@ -67,8 +67,11 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <AllRoutes />
+      </BrowserRouter>
     </>
   );
 }
