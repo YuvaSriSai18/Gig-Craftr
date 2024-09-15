@@ -1,0 +1,12 @@
+.MuiAppBar-root {
+  position: relative;
+  border-radius: 25px;
+  border: 2px solid #cdd1d0;
+}
+.MuiBox-root {
+  margin: 0;
+}
+.MuiPaper-root {
+  margin: 10px 5px;
+  padding: 0;
+}
