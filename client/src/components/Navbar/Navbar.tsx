@@ -15,12 +15,28 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 import logo from "../../assets/gigcrftr.png";
+import { Link } from "react-router-dom";
+
 interface Props {
   window?: () => Window;
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "Find Work", "Find Freelancers"];
+
+const navItems = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Find Work",
+    path: "/find-work",
+  },
+  {
+    name: "Find Freelancers",
+    path: "/find-freelancer",
+  },
+];
 
 export default function Navbar(props: Props) {
   const { window } = props;
@@ -33,22 +49,24 @@ export default function Navbar(props: Props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <Box
-          component={"img"}
-          src={logo}
-          sx={{
-            width: "380px",
-            margin: "0",
-            cursor: "pointer",
-          }}
-        />
+        <Link to={"/"}>
+          <Box
+            component={"img"}
+            src={logo}
+            sx={{
+              width: "380px",
+              margin: "0",
+              cursor: "pointer",
+            }}
+          />
+        </Link>
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: "left" }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -116,19 +134,23 @@ export default function Navbar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <Box
-              component={"img"}
-              src={logo}
-              sx={{
-                width: "230px",
-                cursor: "pointer",
-              }}
-            />
+            <Link to={"/"}>
+              <Box
+                component={"img"}
+                src={logo}
+                sx={{
+                  width: "230px",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" }  }}>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button
-                key={item}
+                key={item.name}
+                component={Link}
+                to={item.path}
                 sx={{
                   color: "#5e5b5b",
                   fontWeight: 300,
@@ -136,38 +158,42 @@ export default function Navbar(props: Props) {
                   marginRight: "10px",
                   position: "relative",
                   overflow: "hidden",
-                  textTransform: "none", // Optional: Prevents uppercase transformation
+                  textTransform: "none",
                 }}
                 disableRipple
               >
-                {item}
+                {item.name}
               </Button>
             ))}
-            <Button
-              sx={{
-                textTransform: "none",
-                backgroundColor: "#1d7fda",
-                padding: "8px 12px",
-                borderRadius: "20px",
-                color: "#fff",
-                marginRight: "10px",
-                fontSize: "14px",
-              }}
-            >
-              Post a Project
-            </Button>
-            <Button
-              sx={{
-                color: "#5e5b5b",
-                fontSize: "16px",
-                marginRight: "10px",
-                textTransform: "none",
-                fontWeight: "300",
-              }}
-              disableRipple
-            >
-              Sign In
-            </Button>
+            <Link to={"/post-project"}>
+              <Button
+                sx={{
+                  textTransform: "none",
+                  backgroundColor: "#1d7fda",
+                  padding: "8px 12px",
+                  borderRadius: "20px",
+                  color: "#fff",
+                  marginRight: "10px",
+                  fontSize: "14px",
+                }}
+              >
+                Post a Project
+              </Button>
+            </Link>
+            <Link to={"/log-in"}>
+              <Button
+                sx={{
+                  color: "#5e5b5b",
+                  fontSize: "16px",
+                  marginRight: "10px",
+                  textTransform: "none",
+                  fontWeight: "300",
+                }}
+                disableRipple
+              >
+                Sign In
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>
