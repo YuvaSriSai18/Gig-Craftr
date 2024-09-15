@@ -18,8 +18,19 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
 
-// Dummy data
-const projects = [
+// Define TypeScript interfaces
+interface Project {
+  title: string;
+  description: string;
+  category: string;
+  bids: number;
+  price: string;
+  rating: number;
+  timePosted: string;
+}
+
+const projects: Project[] = [
+  // Your project data here
   {
     title: "E-Commerce Website",
     description: "Need an experienced Full Stack Developer to build a custom e-commerce website.",
@@ -112,9 +123,8 @@ const projects = [
   },
 ];
 
-
 // Function to shuffle array
-const shuffleArray = (array) => {
+const shuffleArray = (array: Project[]): Project[] => {
   return array
     .map((item) => ({ ...item, sort: Math.random() })) // Add random sort value to each item
     .sort((a, b) => a.sort - b.sort) // Sort by random value
@@ -128,10 +138,15 @@ const StyledCard = styled(Card)(({ theme }) => ({
   borderRadius: "12px",
 }));
 
+// Props type for ProjectCard component
+interface ProjectCardProps {
+  project: Project;
+}
+
 // A component to represent a single project
-function ProjectCard({ project }) {
-  const [saved, setSaved] = useState(false); // State to toggle the save button
-  const [commentsOpen, setCommentsOpen] = useState(false); // State to manage comments
+function ProjectCard({ project }: ProjectCardProps) {
+  const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
+  const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
 
   const toggleSave = () => {
     setSaved((prev) => !prev);
@@ -201,7 +216,7 @@ function ProjectCard({ project }) {
             {hasBids && (
               <Box sx={{ textAlign: "right", marginTop: "1rem" }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  ${parseFloat(project.bids).toFixed(2)} USD
+                  ${parseFloat(project.bids.toString()).toFixed(2)} USD
                 </Typography>
                 <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
                   average bid
@@ -225,19 +240,20 @@ function ProjectCard({ project }) {
   );
 }
 
+// Main component
 export default function FindWork() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [displayedProjects, setDisplayedProjects] = useState(shuffleArray(projects.slice(0, 6))); // Display first 6 projects initially
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [displayedProjects, setDisplayedProjects] = useState<Project[]>(shuffleArray(projects.slice(0, 6))); // Display first 6 projects initially
 
-  const categories = ["Web Development", "Software Development", "Typing", "Web Design"];
+  const categories: string[] = ["Web Development", "Software Development", "Typing", "Web Design"];
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
+  const handleCategoryChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedCategory(e.target.value as string);
   };
 
   const handleLoadMore = () => {
