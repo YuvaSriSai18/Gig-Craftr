@@ -13,7 +13,7 @@ export default function AllRoutes() {
       <Route path="/find-freelancer" element={<FindFreelancers />} />
       <Route path="/find-work" element={<FindWork />} />
       <Route path="/post-project" element={<PostProject />} />
-      <Route path="/log-in" element={<SignIn />} />
+      <Route path="/log-in" element={<SignIn />} /> 
     </Routes>
   );
 }

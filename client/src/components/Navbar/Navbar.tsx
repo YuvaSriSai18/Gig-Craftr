@@ -66,7 +66,9 @@ export default function Navbar(props: Props) {
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: "left" }}>
-              <ListItemText primary={item.name} />
+              <Link to={item.path}>
+                <ListItemText primary={item.name} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}

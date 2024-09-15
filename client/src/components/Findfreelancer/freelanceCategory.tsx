@@ -10,6 +10,7 @@ const categories = [
 ];
 
 const CategoryButtons = () => {
+  const [Categories, setCategories] = React.useState(categories)
   return (
     <Box 
       display="flex"
@@ -23,7 +24,7 @@ const CategoryButtons = () => {
         gap: { xs: 1, sm: 2 }, // Responsive gap
       }}
     >
-      {categories.map((category) => (
+      {Categories.map((category) => (
         <Button
           key={category}
           variant="outlined"

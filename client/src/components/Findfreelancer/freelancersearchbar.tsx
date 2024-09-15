@@ -18,7 +18,7 @@ const FreelancerSearch = () => {
       <TextField
         variant="outlined"
         placeholder="Search for freelancers"
-        size="small"
+        // size="small"
         sx={{
           width: { xs: '90%', sm: '600px', md: '750px' }, // Responsive width
           height: '76px',
@@ -31,13 +31,13 @@ const FreelancerSearch = () => {
             fontSize: '24px', // Larger text size for the input box
           },
           '& input': {
-            fontSize: '24px', // Larger text inside the input field
+            fontSize: '21px', // Larger text inside the input field
           },
         }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon sx={{ fontSize: '40px', color: 'black' }} /> {/* Larger black icon */}
+              <SearchIcon sx={{ fontSize: '35px', color: 'black' }} /> {/* Larger black icon */}
             </InputAdornment>
           ),
         }}
@@ -46,7 +46,7 @@ const FreelancerSearch = () => {
       {/* Top Rated Freelancers Button */}
       <Button
         variant="contained"
-        size="large"
+        // size="large"
         sx={{
           backgroundColor: '#1E88E5', 
           color: 'white', 

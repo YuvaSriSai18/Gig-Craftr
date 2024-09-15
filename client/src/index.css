@@ -3,5 +3,9 @@
 @tailwind utilities;
 body {
   margin: 0;
+  
   background-color: #cce2f7 !important;
 }
+/* ::-webkit-scrollbar{
+  display: none;
+} */
