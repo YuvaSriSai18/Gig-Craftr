@@ -5,6 +5,7 @@ export default function App() {
   return (
     <>
       <Navbar />
+      hi this is a app
     </>
   );
 }
