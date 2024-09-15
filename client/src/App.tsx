@@ -69,8 +69,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <AllRoutes />
-    </BrowserRouter>
+    </>
   );
 }
 
