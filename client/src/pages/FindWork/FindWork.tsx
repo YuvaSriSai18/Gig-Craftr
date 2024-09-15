@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-// import React from 'react'
-=======
 import React, { useState } from "react";
 import {
   Box,
@@ -20,7 +17,6 @@ import TurnedInOutlinedIcon from "@mui/icons-material/TurnedInOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
->>>>>>> 0b3194c3dbfed9e1494c58a521a53ddc3da05de8
 
 // Define TypeScript interfaces
 interface Project {
@@ -150,15 +146,9 @@ interface ProjectCardProps {
 // A component to represent a single project
 function ProjectCard({ project }: ProjectCardProps) {
   const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
-  const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
 
   const toggleSave = () => {
     setSaved((prev) => !prev);
-  };
-
-  const handleCommentsClick = () => {
-    setCommentsOpen((prev) => !prev);
-    console.log("Comment button clicked");
   };
 
   const hasBids = project.bids > 0;
@@ -191,7 +181,6 @@ function ProjectCard({ project }: ProjectCardProps) {
               />
               <ChatBubbleOutlineRoundedIcon
                 sx={{ marginLeft: "0.5rem", color: "grey.600", cursor: "pointer" }}
-                onClick={handleCommentsClick}
               />
             </Box>
           </Grid>
@@ -220,7 +209,7 @@ function ProjectCard({ project }: ProjectCardProps) {
             {hasBids && (
               <Box sx={{ textAlign: "right", marginTop: "1rem" }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  ${parseFloat(project.bids.toString()).toFixed(2)} USD
+                  {project.price}
                 </Typography>
                 <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
                   average bid
@@ -274,12 +263,11 @@ export default function FindWork() {
     <Box sx={{ padding: "2rem" }}>
       <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
         <TextField
-          // label="Search Projects"
           variant="outlined"
           fullWidth
           value={searchTerm}
           onChange={handleSearchChange}
-          placeholder="Search Projects" // Placeholder text
+          placeholder="Search Projects"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -287,11 +275,11 @@ export default function FindWork() {
               </InputAdornment>
             ),
             sx: {
-              backgroundColor: "white", // White background
-              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
-              borderRadius: "8px", // Rounded corners
+              backgroundColor: "white",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              borderRadius: "8px",
               "& fieldset": {
-                border: "none", // Remove black outline
+                border: "none",
               },
             },
           }}
@@ -303,11 +291,11 @@ export default function FindWork() {
           onChange={handleCategoryChange}
           fullWidth
           sx={{
-            backgroundColor: "white", // White background
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
-            borderRadius: "8px", // Rounded corners
+            backgroundColor: "white",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            borderRadius: "8px",
             "& fieldset": {
-              border: "none", // Remove black outline
+              border: "none",
             },
           }}
         >
