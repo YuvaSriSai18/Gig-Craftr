@@ -117,13 +117,13 @@ const SignInSignUp: React.FC = () => {
                 <Divider style={{ marginBottom: "1rem" }} />
 
                 <Box display="flex" flexDirection="column" alignItems="center" gap="0.5rem">
-                    <Button variant="outlined" fullWidth startIcon={<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google" style={{ width: 20, height: 20 }} />}>
+                    <Button variant="outlined" fullWidth startIcon={<img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" style={{ width: 20, height: 20 }} />}>
                         Sign {tabValue === 0 ? "in" : "up"} with Google
                     </Button>
                     <Button variant="outlined" fullWidth startIcon={<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{ width: 20, height: 20 }} />}>
                         Sign {tabValue === 0 ? "in" : "up"} with Microsoft
                     </Button>
-                    <Button variant="outlined" fullWidth startIcon={<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{ width: 20, height: 20 }} />}>
+                    <Button variant="outlined" fullWidth startIcon={<img src="https://img.icons8.com/?size=100&id=2u9oG2V1ZieN&format=png&color=000000" alt="Apple" style={{ width: 20, height: 20 }} />}>
                         Sign {tabValue === 0 ? "in" : "up"} with Apple
                     </Button>
                     <Button variant="outlined" fullWidth startIcon={<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style={{ width: 20, height: 20 }} />}>
