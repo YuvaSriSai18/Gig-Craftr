@@ -9,18 +9,13 @@ const InfoSection: React.FC = () => (
     sx={{
       borderRadius: "15px",
       boxShadow: 3,
-      minHeight: "200px",
+      minHeight: "250px",
       maxWidth: "100%",
-      margin:'50px'
+      margin: { xs: "20px", sm: "50px" },
     }}
   >
-    <CardContent sx={{ textAlign: "center" }}>
-      <Grid
-        container
-        justifyContent="space-around"
-        alignItems="center"
-        spacing={4}
-      >
+    <CardContent sx={{ textAlign: "center", mt: 3 }}>
+      <Grid container justifyContent="center" spacing={3}>
         {/* Create Account */}
         <Grid item xs={12} md={4}>
           <LockIcon sx={{ fontSize: "50px", color: "#2196f3" }} />
@@ -33,7 +28,7 @@ const InfoSection: React.FC = () => (
           <Typography
             variant="body2"
             color="textSecondary"
-            sx={{ fontSize: "24px" }}
+            sx={{ fontSize: { xs: "16px", sm: "18px" } }}
           >
             First you have to create an account here
           </Typography>
@@ -50,7 +45,7 @@ const InfoSection: React.FC = () => (
           <Typography
             variant="body2"
             color="textSecondary"
-            sx={{ fontSize: "24px" }}
+            sx={{ fontSize: { xs: "16px", sm: "18px" } }}
           >
             Search the best freelance work here
           </Typography>
@@ -67,7 +62,7 @@ const InfoSection: React.FC = () => (
           <Typography
             variant="body2"
             color="textSecondary"
-            sx={{ fontSize: "24px" }}
+            sx={{ fontSize: { xs: "16px", sm: "18px" } }}
           >
             Apply or save and start your work
           </Typography>

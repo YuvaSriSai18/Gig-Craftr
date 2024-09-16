@@ -5,12 +5,11 @@ import {
   Paper,
   Button,
   Avatar,
-  IconButton,
   Collapse,
   Rating
 } from '@mui/material';
-import { ExpandMore, Star, AccessTime } from '@mui/icons-material';
-import { styled } from '@mui/system';
+import { ExpandMore,  AccessTime } from '@mui/icons-material';
+// import { styled } from '@mui/system';
 
 interface SectionProps {
   title: string;

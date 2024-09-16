@@ -8,11 +8,11 @@ import {
     Rating,
     TextField,
     InputAdornment,
-    Divider,
+    // Divider,
   } from "@mui/material";
   import StarIcon from "@mui/icons-material/Star";
   import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-  import Footer from "../../components/Footer/Footer";
+  // import Footer from "../../components/Footer/Footer";
   import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
   import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
   import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';

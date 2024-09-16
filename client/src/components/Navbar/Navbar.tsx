@@ -9,7 +9,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -113,14 +113,14 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display:'flex', maxWidth: { xs: "98%", sm: "99%" } }}>
+    <Box sx={{ display: "flex", maxWidth: { xs: "98%", sm: "99%" } }}>
       <CssBaseline />
       <AppBar
         component="div"
-        position="static"
+        position="sticky"
         sx={{
           width: "100%",
-          height: "60px",
+          height: { xs: "60px", sm: "65px" },
           margin: "20px 8px",
           borderRadius: "30px",
           backgroundColor: "#fff",
@@ -131,9 +131,9 @@ export default function Navbar(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ display: { sm: "none" }, ml: 0.5 }}
           >
-            <MenuIcon />
+            <MenuRoundedIcon sx={{ fontSize: "28px" }} />
           </IconButton>
           <Typography
             variant="h6"
@@ -160,7 +160,7 @@ export default function Navbar(props: Props) {
                 sx={{
                   color: "#5e5b5b",
                   fontWeight: 400,
-                  fontSize: "16px",
+                  fontSize: { sm: "12px", md: "16px" },
                   marginRight: "10px",
                   position: "relative",
                   overflow: "hidden",
@@ -180,7 +180,7 @@ export default function Navbar(props: Props) {
                   borderRadius: "20px",
                   color: "#fff",
                   marginRight: "10px",
-                  fontSize: "14px",
+                  fontSize: { sm: "12px", md: "16px" },
                 }}
               >
                 Post a Project
@@ -190,7 +190,7 @@ export default function Navbar(props: Props) {
               <Button
                 sx={{
                   color: "#5e5b5b",
-                  fontSize: "16px",
+                  fontSize: { sm: "12px", md: "16px" },
                   marginRight: "10px",
                   textTransform: "none",
                   fontWeight: "400",

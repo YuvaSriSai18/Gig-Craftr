@@ -56,6 +56,7 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
   const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
+  console.log(commentsOpen)
   const navigate = useNavigate(); // Initialize navigate hook
 
   const toggleSave = () => {
