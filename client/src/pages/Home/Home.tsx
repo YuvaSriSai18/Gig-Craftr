@@ -14,7 +14,7 @@ export default function Home() {
       <InfoSection />
       <TextWithImage />
       <CategoryGrid />
-      <JobsCarousel />
+  <JobsCarousel/>
       <Footer />
     </>
   );
