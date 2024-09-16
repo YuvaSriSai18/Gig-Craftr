@@ -1,6 +1,7 @@
 // import React from 'react';
 import { Avatar, Card, Typography, Button, Box, Rating } from "@mui/material";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
+import { Link } from "react-router-dom";
 interface Freelancer {
   name: string;
   role: string;
@@ -12,7 +13,8 @@ interface Freelancer {
 }
 
 const FreelancerCard = ({ freelancer }: { freelancer: Freelancer }) => (
-  <Card
+ 
+   <Card
     sx={{
       display: "flex",
       alignItems: { xs: "flex-start", sm: "center" }, // Align vertically for small screens, horizontally for larger
@@ -74,6 +76,7 @@ const FreelancerCard = ({ freelancer }: { freelancer: Freelancer }) => (
         />
       </Box>
     </Box>
+    <Link to="/view-profile">
     <Button
       variant="contained"
       sx={{
@@ -92,7 +95,9 @@ const FreelancerCard = ({ freelancer }: { freelancer: Freelancer }) => (
     >
       View Profile
     </Button>
+    </Link>
   </Card>
+
 );
 
 export default FreelancerCard;

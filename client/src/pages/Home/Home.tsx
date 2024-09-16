@@ -2,10 +2,11 @@
 import HeroSection from "../../components/Home/HeroSection";
 // import Carousel from "../../components/Home/Carousel";
 import TextWithImage from "../../components/Home/TextWithImage";
-import Jobs from "../../components/Home/Jobs";
+
 import Footer from "../../components/Footer/Footer";
 import InfoSection from "../../components/Home/InfoSection";
 import CategoryGrid from "../../components/Home/loadcatogiry";
+import JobsCarousel from "../../components/Home/Carousel";
 export default function Home() {
   return (
     <>
@@ -13,7 +14,7 @@ export default function Home() {
       <InfoSection />
       <TextWithImage />
       <CategoryGrid />
-      <Jobs />
+  <JobsCarousel/>
       <Footer />
     </>
   );
