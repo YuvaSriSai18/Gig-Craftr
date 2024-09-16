@@ -1,63 +1,205 @@
-import React, { useState } from 'react';
-import { Box, Card, CardContent, Grid, IconButton, Typography } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import StarIcon from '@mui/icons-material/Star';
+import React, { useState } from "react";
+import {
+  Box,
+  Card,
+  CardContent,
+  IconButton,
+  Typography,
+  Button,
+} from "@mui/material";
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import StarIcon from "@mui/icons-material/Star";
+import { jobs } from "../../Constants/jobs";
 
-const jobs = [
-  { title: 'Graphic&Design', description: 'Need a Graphic Designer to design a social media platform.', time: '10 minutes ago', bid: '$300', rating: 4.5 },
-  { title: 'C++ Developer', description: 'I want a C++ Developer who has strong foundation in data structures.', time: '12 minutes ago', bid: '$200', rating: 3.5 },
-  { title: 'React Developer', description: 'Need an experienced Full Stack Developer to build e-commerce website.', time: '19 minutes ago', bid: '$100', rating: 4.0 },
-  { title: 'C Developer', description: 'I want a C Developer to help with an embedded system project.', time: '20 minutes ago', bid: '$500', rating: 4.2 },
-  { title: 'UI/UX Designer', description: 'Looking for a UI/UX designer for a mobile application.', time: '25 minutes ago', bid: '$150', rating: 4.8 },
-];
-
-const JobsCarousel: React.FC = () => {
+const Carousel: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  const handleScroll = (direction: 'left' | 'right') => {
+  const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 300;
-      const newPosition = scrollPosition + (direction === 'left' ? -scrollAmount : scrollAmount);
+      const scrollAmount = 300; // Scroll amount per button click
+      const newPosition =
+        direction === "left"
+          ? Math.max(0, scrollPosition - scrollAmount)
+          : Math.min(
+              scrollRef.current.scrollWidth - scrollRef.current.offsetWidth,
+              scrollPosition + scrollAmount
+            );
       setScrollPosition(newPosition);
-      scrollRef.current.scrollTo({ left: newPosition, behavior: 'smooth' });
+      scrollRef.current.scrollTo({ left: newPosition, behavior: "smooth" });
     }
   };
 
   return (
-    <Grid container alignItems="center" justifyContent="center" spacing={2}>
-      <Grid item>
-        <IconButton onClick={() => handleScroll('left')}>
-          <ArrowBackIosIcon />
-        </IconButton>
-      </Grid>
-
-      <Grid item xs={10}>
-        <Box ref={scrollRef} sx={{ display: 'flex', overflowX: 'auto', scrollBehavior: 'smooth', paddingBottom: '1rem', '&::-webkit-scrollbar': { display: 'none' } }}>
-          {jobs.map((job, index) => (
-            <Card key={index} sx={{ minWidth: '250px', maxWidth: '250px', marginRight: '1rem', flexShrink: 0, boxShadow: 3, borderRadius: '15px' }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>{job.title}</Typography>
-                <Typography variant="body2" color="textSecondary">{job.description}</Typography>
-                <Typography variant="body2" color="textSecondary" sx={{ marginTop: '0.5rem' }}>{job.time}</Typography>
-                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', marginTop: '0.5rem' }}>
-                  <StarIcon sx={{ color: '#ffb400', fontSize: '1rem', marginRight: '0.25rem' }} /> {job.rating}
+    <Box sx={{ position: "relative", width: "100%", maxWidth: "100%",margin:'20px' }}>
+      {/* Carousel Content */}
+      <Box
+        ref={scrollRef}
+        sx={{
+          display: "flex",
+          overflowX: "hidden",
+          scrollBehavior: "smooth",
+          padding:'5px',
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
+        {jobs.map((job, index) => (
+          <Card
+            key={index}
+            sx={{
+              minWidth: "260px",
+              maxWidth: "260px",
+              minHeight: "280px",
+              maxHeight: "280px",
+              marginRight: "1rem",
+              flexShrink: 0,
+              boxShadow: 3,
+              borderRadius: "10px",
+              backgroundColor: "#fff",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <CardContent
+              sx={{
+                padding: "16px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                height: "100%",
+                overflow: "hidden", // Prevent overflow of card content
+              }}
+            >
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {job.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                sx={{
+                  fontSize: "0.875rem",
+                  height: "40px", // Fixed height for descriptions
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {job.description}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {job.time}
+              </Typography>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <StarIcon
+                  sx={{
+                    color: "#ffb400",
+                    fontSize: "1.2rem",
+                    marginRight: "0.25rem",
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontSize: "0.875rem",
+                  }}
+                >
+                  {job.rating}
                 </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 'bold', marginTop: '1rem' }}>Highest Bid: {job.bid}</Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
-      </Grid>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "auto",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  Highest Bid: {job.bid}
+                </Typography>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    fontSize: "0.75rem",
+                    padding: "5px 10px",
+                  }}
+                  onClick={() => console.log(`Bid on ${job.title}`)}
+                >
+                  Bid Now
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
 
-      <Grid item>
-        <IconButton onClick={() => handleScroll('right')}>
-          <ArrowForwardIosIcon />
+      {/* Updated Button Container */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "end", // Align both buttons in the center
+          gap: "1rem", // Space between the buttons
+          marginTop: "1rem", // Margin to separate buttons from the carousel
+          marginRight: "2rem"
+        }}
+      >
+        {/* Left Scroll Button */}
+        <IconButton
+          onClick={() => handleScroll("left")}
+          sx={{
+            backgroundColor: "#1976d2",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#1565c0",
+              transform: "scale(1.1)", // Scale up on hover for effect
+            },
+            borderRadius: "50%",
+            boxShadow: 3,
+            transition: "transform 0.2s ease-in-out", // Smooth scaling effect
+          }}
+        >
+          <ArrowBackRoundedIcon />
         </IconButton>
-      </Grid>
-    </Grid>
+
+        {/* Right Scroll Button */}
+        <IconButton
+          onClick={() => handleScroll("right")}
+          sx={{
+            backgroundColor: "#1976d2",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#1565c0",
+              transform: "scale(1.1)", // Scale up on hover for effect
+            },
+            borderRadius: "50%",
+            boxShadow: 3,
+            transition: "transform 0.2s ease-in-out", // Smooth scaling effect
+          }}
+        >
+          <ArrowForwardRoundedIcon />
+        </IconButton>
+      </Box>
+    </Box>
   );
 };
 
-export default JobsCarousel;
+export default Carousel;
