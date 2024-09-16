@@ -21,6 +21,7 @@ const TextWithImage: React.FC = () => (
           sx={{
             fontWeight: "bold",
             fontSize: "56px",
+            marginRight: "2rem",
             textAlign: { xs: "center", md: "right" },
           }}
         >
@@ -40,6 +41,7 @@ const TextWithImage: React.FC = () => (
             maxWidth: "900px",
             margin: "1rem auto",
             fontSize: "24px",
+            marginRight: "2rem",
             textAlign: { xs: "center", md: "right" },
           }}
         >

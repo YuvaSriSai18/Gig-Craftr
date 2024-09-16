@@ -16,7 +16,12 @@ const HeroSection: React.FC = () => {
       >
         {/* Text Content */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h2" component="h2" gutterBottom>
+          <Typography
+            variant="h2"
+            component="h2"
+            gutterBottom
+            sx={{ ml: { xs: "0", md: "2rem" } }} // Adjust the margin-left based on screen size
+          >
             Are you{" "}
             <Typography
               component="span"
@@ -26,9 +31,15 @@ const HeroSection: React.FC = () => {
             </Typography>{" "}
             for Freelancers?
           </Typography>
-          <Typography variant="body1" color="textSecondary" gutterBottom>
-            Find top-tier freelancers instantly. Freelancing connects you with
-            expert talent, ready to elevate your project in no time!
+
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            gutterBottom
+            sx={{ ml: { xs: "0", md: "2rem" } }} // Same margin-left for body text
+          >
+            Find top-tier freelancers instantly. Freelancing connects you with expert
+            talent, ready to elevate your project in no time!
           </Typography>
 
           {/* Buttons */}
@@ -36,7 +47,7 @@ const HeroSection: React.FC = () => {
             container
             spacing={2}
             alignItems="center"
-            sx={{ marginTop: "2rem" }}
+            sx={{ marginTop: "2rem", marginLeft: { xs: "0", md: "1rem" } }}
           >
             <Grid item>
               <Button

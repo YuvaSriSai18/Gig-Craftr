@@ -3,15 +3,14 @@ import {
   Box,
   Card,
   CardContent,
-  Grid,
   IconButton,
   Typography,
+  Button,
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import StarIcon from "@mui/icons-material/Star";
-import {jobs} from '../../Constants/jobs'
-
+import { jobs } from "../../Constants/jobs";
 
 const Jobs: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -19,94 +18,187 @@ const Jobs: React.FC = () => {
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 300;
+      const scrollAmount = 300; // Scroll amount per button click
       const newPosition =
-        scrollPosition + (direction === "left" ? -scrollAmount : scrollAmount);
+        direction === "left"
+          ? Math.max(0, scrollPosition - scrollAmount)
+          : Math.min(
+              scrollRef.current.scrollWidth - scrollRef.current.offsetWidth,
+              scrollPosition + scrollAmount
+            );
       setScrollPosition(newPosition);
       scrollRef.current.scrollTo({ left: newPosition, behavior: "smooth" });
     }
   };
 
   return (
-    <Grid container alignItems="center" justifyContent="center" spacing={2}>
-      <Grid item>
-        <IconButton onClick={() => handleScroll("left")}>
-          <ArrowBackIosIcon />
-        </IconButton>
-      </Grid>
-
-      <Grid item xs={10}>
-        <Box
-          ref={scrollRef}
-          sx={{
-            display: "flex",
-            overflowX: "auto",
-            scrollBehavior: "smooth",
-            paddingBottom: "1rem",
-            "&::-webkit-scrollbar": { display: "none" },
-          }}
-        >
-          {jobs.map((job, index) => (
-            <Card
-              key={index}
+    <Box sx={{ position: "relative", width: "100%", maxWidth: "100%" }}>
+      {/* Carousel Content */}
+      <Box
+        ref={scrollRef}
+        sx={{
+          display: "flex",
+          overflowX: "hidden",
+          scrollBehavior: "smooth",
+          paddingBottom: "1rem",
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
+        {jobs.map((job, index) => (
+          <Card
+            key={index}
+            sx={{
+              minWidth: "260px",
+              maxWidth: "260px",
+              minHeight: "280px",
+              maxHeight: "280px",
+              marginRight: "1rem",
+              flexShrink: 0,
+              boxShadow: 3,
+              borderRadius: "10px",
+              backgroundColor: "#fff",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <CardContent
               sx={{
-                minWidth: "250px",
-                maxWidth: "250px",
-                marginRight: "1rem",
-                flexShrink: 0,
-                boxShadow: 3,
-                borderRadius: "15px",
+                padding: "16px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                height: "100%",
+                overflow: "hidden", // Prevent overflow of card content
               }}
             >
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  {job.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {job.description}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  sx={{ marginTop: "0.5rem" }}
-                >
-                  {job.time}
-                </Typography>
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {job.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                sx={{
+                  fontSize: "0.875rem",
+                  height: "40px", // Fixed height for descriptions
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {job.description}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {job.time}
+              </Typography>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <StarIcon
+                  sx={{
+                    color: "#ffb400",
+                    fontSize: "1.2rem",
+                    marginRight: "0.25rem",
+                  }}
+                />
                 <Typography
                   variant="body2"
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "0.5rem",
+                    fontSize: "0.875rem",
                   }}
                 >
-                  <StarIcon
-                    sx={{
-                      color: "#ffb400",
-                      fontSize: "1rem",
-                      marginRight: "0.25rem",
-                    }}
-                  />{" "}
                   {job.rating}
                 </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "auto",
+                }}
+              >
                 <Typography
                   variant="body2"
-                  sx={{ fontWeight: "bold", marginTop: "1rem" }}
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: "0.9rem",
+                  }}
                 >
                   Highest Bid: {job.bid}
                 </Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
-      </Grid>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    fontSize: "0.75rem",
+                    padding: "5px 10px",
+                  }}
+                  onClick={() => console.log(`Bid on ${job.title}`)}
+                >
+                  Bid Now
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
 
-      <Grid item>
-        <IconButton onClick={() => handleScroll("right")}>
+      {/* Updated Button Container */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "end", // Align both buttons in the center
+          gap: "1rem", // Space between the buttons
+          marginTop: "1rem", // Margin to separate buttons from the carousel
+          marginRight: "1rem"
+        }}
+      >
+        {/* Left Scroll Button */}
+        <IconButton
+          onClick={() => handleScroll("left")}
+          sx={{
+            backgroundColor: "#1976d2",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#1565c0",
+              transform: "scale(1.1)", // Scale up on hover for effect
+            },
+            borderRadius: "50%",
+            boxShadow: 3,
+            transition: "transform 0.2s ease-in-out", // Smooth scaling effect
+          }}
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+
+        {/* Right Scroll Button */}
+        <IconButton
+          onClick={() => handleScroll("right")}
+          sx={{
+            backgroundColor: "#1976d2",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#1565c0",
+              transform: "scale(1.1)", // Scale up on hover for effect
+            },
+            borderRadius: "50%",
+            boxShadow: 3,
+            transition: "transform 0.2s ease-in-out", // Smooth scaling effect
+          }}
+        >
           <ArrowForwardIosIcon />
         </IconButton>
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
 };
 
