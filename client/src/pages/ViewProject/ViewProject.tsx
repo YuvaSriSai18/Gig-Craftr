@@ -16,6 +16,8 @@ import {
   import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
   import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
   import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+  import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+  import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
   
   export default function ViewProject() {
     // Dummy project data
@@ -284,7 +286,11 @@ import {
                 About the Client <br />
                 <Typography sx={{marginBottom:"2px"}}>
                   <Box component="span" sx={{ color: "black" }}>
-                    -Identity verified
+                  · Identity Verified <br />
+                  · Payment Verified<br />
+                  · Email Verified<br />
+                  · Phone Verified<br />
+                  · Profile Completed<br />
                   </Box>
                 </Typography>
               </Typography>
@@ -294,8 +300,21 @@ import {
               >
                 About the Client <br />
                 <Typography sx={{marginBottom:"2px"}}>
-                  <LocationOnOutlinedIcon sx={{marginRight: "8px"}}/>
-                  <Box component="span" sx={{ color: "black" }}>India</Box>
+                  <CallOutlinedIcon sx={{marginRight:"6px"}}/>
+                  <Box component="span" sx={{ color: "black" }}>
+                    9985XXXXXX
+                  </Box>
+                  <br />
+                  <EmailOutlinedIcon sx={{marginBottom:"2px",marginRight:"6px"}}/>
+                  <Box component="span" sx={{ color: "black" }}>
+                    organization@domain.org.com
+                  </Box>
+                  <br />
+                  {/* <CallOutlinedIcon sx={{marginRight:"6px"}}/>
+                  <Box component="span" sx={{ color: "black" }}>
+                    9985XXXXXX
+                  </Box>
+                  <br /> */}
                 </Typography>
               </Typography>
   
