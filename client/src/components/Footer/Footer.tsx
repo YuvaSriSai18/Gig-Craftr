@@ -20,6 +20,7 @@ const Footer = () => {
         backgroundColor: "#fff", // Set background to white
         width: "100%", // Full width
         py: 2,
+        mt:3
       }}
     >
       <Container maxWidth="lg">
