@@ -17,8 +17,10 @@ import TurnedInOutlinedIcon from "@mui/icons-material/TurnedInOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
-import {projects} from '../../Constants/projects.js'
+import { projects } from "../../Constants/projects.js";
+
 // Define TypeScript interfaces
 interface Project {
   title: string;
@@ -29,7 +31,6 @@ interface Project {
   rating: number;
   timePosted: string;
 }
-
 
 // Function to shuffle array
 const shuffleArray = (array: Project[]): Project[] => {
@@ -55,14 +56,20 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
   const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
-  console.log(commentsOpen);
+  const navigate = useNavigate(); // Initialize navigate hook
+
   const toggleSave = () => {
     setSaved((prev) => !prev);
   };
 
   const handleCommentsClick = () => {
     setCommentsOpen((prev) => !prev);
-    console.log("Comment button clicked");
+  };
+
+  const handleViewProject = () => {
+    // Navigate to the ViewProject page and pass project id or data
+    navigate('/view-project', { state: { project } });
+    // navigate(/view-project/${project.title}, { state: { project } });
   };
 
   const hasBids = project.bids > 0;
@@ -86,6 +93,7 @@ function ProjectCard({ project }: ProjectCardProps) {
               variant="contained"
               color="primary"
               sx={{ marginTop: "0.5rem", borderRadius: "14px" }}
+              onClick={handleViewProject} // Set the click handler
             >
               View Project
             </Button>
@@ -155,7 +163,7 @@ function ProjectCard({ project }: ProjectCardProps) {
             {hasBids && (
               <Box sx={{ textAlign: "right", marginTop: "1rem" }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  ${parseFloat(project.bids.toString()).toFixed(2)} USD
+                  {project.price}
                 </Typography>
                 <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
                   average bid
@@ -222,12 +230,11 @@ export default function FindWork() {
       <Box sx={{ padding: "2rem" }}>
         <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
           <TextField
-            // label="Search Projects"
             variant="outlined"
             fullWidth
             value={searchTerm}
             onChange={handleSearchChange}
-            placeholder="Search Projects" // Placeholder text
+            placeholder="Search Projects"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -255,7 +262,7 @@ export default function FindWork() {
               boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
               borderRadius: "8px", // Rounded corners
               "& fieldset": {
-                border: "none", // Remove black outline
+                border: "none",
               },
             }}
           >
@@ -282,7 +289,7 @@ export default function FindWork() {
           </Button>
         </Box>
       </Box>
-      <Footer/>
+      <Footer />
     </>
   );
 }

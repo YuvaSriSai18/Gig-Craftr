@@ -6,7 +6,7 @@ import Home from "./pages/Home/Home";
 import FindFreelancers from "./pages/FindFreelancers/FindFreelancers";
 import FindWork from "./pages/FindWork/FindWork";
 import PostProject from "./pages/PostProject/PostProject";
-
+import  ViewProject  from "./pages/ViewProject/ViewProject";
 export default function AllRoutes() {
   return (
     <Routes>
@@ -16,7 +16,7 @@ export default function AllRoutes() {
       <Route path="/post-project" element={<PostProject />} />
       <Route path="/log-in" element={<SignIn />} />
       <Route path="/view-profile" element={<FreelancerProfile />} />
-      
+      <Route path="/view-project" element={<ViewProject />} />
     </Routes>
   );
 }
