@@ -2,6 +2,7 @@
 import Navbar from "./components/Navbar/Navbar";
 import AllRoutes from "./AllRoutes";
 import { BrowserRouter } from "react-router-dom";
+import Chatbot from "./components/Chatbot/Chatbot"
 // import { Box } from "@mui/material";
 // import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -71,6 +72,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <AllRoutes />
+        <Chatbot />
       </BrowserRouter>
     </>
   );

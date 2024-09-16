@@ -17,12 +17,10 @@ import TurnedInOutlinedIcon from "@mui/icons-material/TurnedInOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
-<<<<<<< HEAD
-
-=======
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
-import {projects} from '../../Constants/projects.js'
->>>>>>> 0c1048c56c5a7ad062178e32c97ef576f028335a
+import { projects } from "../../Constants/projects.js";
+
 // Define TypeScript interfaces
 interface Project {
   title: string;
@@ -33,7 +31,6 @@ interface Project {
   rating: number;
   timePosted: string;
 }
-
 
 // Function to shuffle array
 const shuffleArray = (array: Project[]): Project[] => {
@@ -58,14 +55,21 @@ interface ProjectCardProps {
 // A component to represent a single project
 function ProjectCard({ project }: ProjectCardProps) {
   const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
-<<<<<<< HEAD
-
-=======
   const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
-  console.log(commentsOpen);
->>>>>>> 0c1048c56c5a7ad062178e32c97ef576f028335a
+  const navigate = useNavigate(); // Initialize navigate hook
+
   const toggleSave = () => {
     setSaved((prev) => !prev);
+  };
+
+  const handleCommentsClick = () => {
+    setCommentsOpen((prev) => !prev);
+  };
+
+  const handleViewProject = () => {
+    // Navigate to the ViewProject page and pass project id or data
+    navigate(`/view-project/`, { state: { project } });
+    // navigate(`/view-project/${project.title}`, { state: { project } });
   };
 
   const hasBids = project.bids > 0;
@@ -89,6 +93,7 @@ function ProjectCard({ project }: ProjectCardProps) {
               variant="contained"
               color="primary"
               sx={{ marginTop: "0.5rem", borderRadius: "14px" }}
+              onClick={handleViewProject} // Set the click handler
             >
               View Project
             </Button>
@@ -107,16 +112,12 @@ function ProjectCard({ project }: ProjectCardProps) {
                 icon={<StarIcon fontSize="inherit" />}
               />
               <ChatBubbleOutlineRoundedIcon
-<<<<<<< HEAD
-                sx={{ marginLeft: "0.5rem", color: "grey.600", cursor: "pointer" }}
-=======
                 sx={{
                   marginLeft: "0.5rem",
                   color: "grey.600",
                   cursor: "pointer",
                 }}
                 onClick={handleCommentsClick}
->>>>>>> 0c1048c56c5a7ad062178e32c97ef576f028335a
               />
             </Box>
           </Grid>
@@ -225,36 +226,15 @@ export default function FindWork() {
   );
 
   return (
-<<<<<<< HEAD
-    <Box sx={{ padding: "2rem" }}>
-      <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
-        <TextField
-          variant="outlined"
-          fullWidth
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Search Projects"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-            sx: {
-              backgroundColor: "white",
-              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-              borderRadius: "8px",
-=======
     <>
       <Box sx={{ padding: "2rem" }}>
         <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
           <TextField
-            // label="Search Projects"
             variant="outlined"
             fullWidth
             value={searchTerm}
             onChange={handleSearchChange}
-            placeholder="Search Projects" // Placeholder text
+            placeholder="Search Projects"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -281,35 +261,9 @@ export default function FindWork() {
               backgroundColor: "white", // White background
               boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Drop shadow at the bottom
               borderRadius: "8px", // Rounded corners
->>>>>>> 0c1048c56c5a7ad062178e32c97ef576f028335a
               "& fieldset": {
                 border: "none",
               },
-<<<<<<< HEAD
-            },
-          }}
-        />
-        <TextField
-          select
-          label="Filter by Category"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-          fullWidth
-          sx={{
-            backgroundColor: "white",
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-            borderRadius: "8px",
-            "& fieldset": {
-              border: "none",
-            },
-          }}
-        >
-          <MenuItem value="">All Categories</MenuItem>
-          {categories.map((category, index) => (
-            <MenuItem key={index} value={category}>
-              {category}
-            </MenuItem>
-=======
             }}
           >
             <MenuItem value="">All Categories</MenuItem>
@@ -326,7 +280,6 @@ export default function FindWork() {
             <Grid item xs={12} key={index}>
               <ProjectCard project={project} />
             </Grid>
->>>>>>> 0c1048c56c5a7ad062178e32c97ef576f028335a
           ))}
         </Grid>
 
@@ -336,7 +289,7 @@ export default function FindWork() {
           </Button>
         </Box>
       </Box>
-      <Footer/>
+      <Footer />
     </>
   );
 }
