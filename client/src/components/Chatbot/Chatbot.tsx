@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, TextField, Button, IconButton } from '@mui/material';
+import { Box, TextField, Button, IconButton, Fab } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import CloseIcon from '@mui/icons-material/Close';
+import ChatIcon from '@mui/icons-material/Chat';
 
 const Chatbot = () => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false); // Start with the chat closed
 
   const toggleChat = () => setOpen(!open);
 
@@ -14,15 +15,21 @@ const Chatbot = () => {
         position: 'fixed',
         bottom: 16,
         right: 16,
-        width: 320,
-        height: open ? 400 : 0,
-        bgcolor: 'background.paper',
-        boxShadow: 3,
+        width: open ? 320 : 'auto', // Adjust width when open/closed
+        height: open ? 400 : 'auto', // Adjust height when open/closed
+        bgcolor: open ? 'background.paper' : 'transparent',
+        boxShadow: open ? 3 : 'none',
         borderRadius: 2,
         overflow: 'hidden',
-        transition: 'height 0.3s ease'
+        transition: 'all 0.3s ease'
       }}
     >
+      {!open && (
+        <Fab color="primary" onClick={toggleChat} aria-label="chat" sx={{ position: 'fixed', bottom: 16, right: 16 }}>
+          <ChatIcon />
+        </Fab>
+      )}
+
       {open && (
         <Box
           sx={{
