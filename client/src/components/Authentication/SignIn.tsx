@@ -142,9 +142,12 @@ const SignInSignUp: React.FC = () => {
   return (
     <Box
       sx={{
-        backgroundSize: "cover",
+        // backgroundSize: "cover",
         backgroundPosition: "center",
-        minHeight: "100vh",
+        minHeight: {
+          xs: "80vh",
+          sm: "100vh",
+        },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

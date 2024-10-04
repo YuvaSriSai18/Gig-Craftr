@@ -13,8 +13,7 @@ interface Freelancer {
 }
 
 const FreelancerCard = ({ freelancer }: { freelancer: Freelancer }) => (
- 
-   <Card
+  <Card
     sx={{
       display: "flex",
       alignItems: { xs: "flex-start", sm: "center" }, // Align vertically for small screens, horizontally for larger
@@ -77,27 +76,26 @@ const FreelancerCard = ({ freelancer }: { freelancer: Freelancer }) => (
       </Box>
     </Box>
     <Link to="/view-profile">
-    <Button
-      variant="contained"
-      sx={{
-        ml: { xs: 0, sm: 2 },
-        mt: { xs: 2, sm: 0 },
-        borderRadius: "16px",
-        width: { xs: "100%", sm: "auto" },
-        fontSize: { xs: "18px", sm: "20px" }, // Increased font size for button text
-        padding: { xs: "12px 24px", sm: "16px 32px" }, // Increased padding for larger button
-        backgroundColor: "#1E88E5",
-        color: "white",
-        "&:hover": {
-          backgroundColor: "#1565C0",
-        },
-      }}
-    >
-      View Profile
-    </Button>
+      <Button
+        variant="contained"
+        sx={{
+          ml: { xs: 0, sm: 2 },
+          mt: { xs: 2, sm: 0 },
+          borderRadius: "18px",
+          width: { xs: "100%", sm: "auto" },
+          fontSize: { xs: "18px", sm: "20px" }, // Increased font size for button text
+          padding: { xs: "12px 24px", sm: "16px 32px" }, // Increased padding for larger button
+          backgroundColor: "#1E88E5",
+          color: "white",
+          "&:hover": {
+            backgroundColor: "#1565C0",
+          },
+        }}
+      >
+        View Profile
+      </Button>
     </Link>
   </Card>
-
 );
 
 export default FreelancerCard;

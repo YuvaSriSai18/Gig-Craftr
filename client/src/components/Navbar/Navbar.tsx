@@ -13,9 +13,10 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
 import logo from "../../assets/gigcrftr.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Modal from "@mui/material/Modal";
+import SignInSignUp from "../Authentication/SignIn";
 
 interface Props {
   window?: () => Window;
@@ -24,27 +25,39 @@ interface Props {
 const drawerWidth = 240;
 
 const navItems = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "Find Work",
-    path: "/find-work",
-  },
-  {
-    name: "Find Freelancers",
-    path: "/find-freelancer",
-  },
+  { name: "Home", path: "/" },
+  { name: "Find Work", path: "/find-work" },
+  { name: "Find Freelancers", path: "/find-freelancer" },
 ];
+
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: {
+    xs: "100%",
+    sm: 650,
+  },
+  bgcolor: "transparent",
+  boxShadow: 48,
+  borderRadius: 3,
+  p: 4,
+};
 
 export default function Navbar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false); // State for modal
+
+  const location = useLocation(); // Get current location
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const handleModalOpen = () => setOpen(true); // Open modal
+  const handleModalClose = () => setOpen(false); // Close modal
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -89,22 +102,21 @@ export default function Navbar(props: Props) {
             Post a Project
           </Button>
         </Link>
-        <Link to={"/log-in"}>
-          <Button
-            sx={{
-              color: "#5e5b5b",
-              fontSize: "16px",
-              marginRight: "10px",
-              textTransform: "none",
-              fontWeight: "300",
-              marginTop: 2,
-              textDecoration: "underline",
-            }}
-            disableRipple
-          >
-            Sign In
-          </Button>
-        </Link>
+        <Button
+          onClick={handleModalOpen} // Open modal on click
+          sx={{
+            color: "#5e5b5b",
+            fontSize: "16px",
+            marginRight: "10px",
+            textTransform: "none",
+            fontWeight: "300",
+            marginTop: 2,
+            textDecoration: "underline",
+          }}
+          disableRipple
+        >
+          Sign In
+        </Button>
       </Box>
     </Box>
   );
@@ -113,15 +125,15 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex", maxWidth: { xs: "98%", sm: "99%" } }}>
+    <Box sx={{ maxWidth: { xs: "98%", sm: "99%" } }}>
       <CssBaseline />
       <AppBar
         component="div"
-        position="sticky"
+        position="static"
         sx={{
           width: "100%",
           height: { xs: "60px", sm: "65px" },
-          margin: "20px 8px",
+          margin: "20px 8px 0px 8px",
           borderRadius: "30px",
           backgroundColor: "#fff",
         }}
@@ -158,8 +170,9 @@ export default function Navbar(props: Props) {
                 component={Link}
                 to={item.path}
                 sx={{
-                  color: "#5e5b5b",
-                  fontWeight: 400,
+                  color:
+                    location.pathname === item.path ? "#1d7fda" : "#5e5b5b",
+                  fontWeight: location.pathname === item.path ? "bold" : 400,
                   fontSize: { sm: "12px", md: "16px" },
                   marginRight: "10px",
                   position: "relative",
@@ -186,20 +199,19 @@ export default function Navbar(props: Props) {
                 Post a Project
               </Button>
             </Link>
-            <Link to={"/log-in"}>
-              <Button
-                sx={{
-                  color: "#5e5b5b",
-                  fontSize: { sm: "12px", md: "16px" },
-                  marginRight: "10px",
-                  textTransform: "none",
-                  fontWeight: "400",
-                }}
-                disableRipple
-              >
-                Sign In
-              </Button>
-            </Link>
+            <Button
+              onClick={handleModalOpen} // Open modal on click
+              sx={{
+                color: "#5e5b5b",
+                fontSize: { sm: "12px", md: "16px" },
+                marginRight: "10px",
+                textTransform: "none",
+                fontWeight: "400",
+              }}
+              disableRipple
+            >
+              Sign In
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -223,6 +235,18 @@ export default function Navbar(props: Props) {
           {drawer}
         </Drawer>
       </nav>
+
+      <Modal
+        open={open}
+        onClose={handleModalClose}
+        aria-labelledby="project-modal-title"
+        aria-describedby="project-modal-description"
+      >
+        <Box sx={modalStyle}>
+          <SignInSignUp />
+        </Box>
+      </Modal>
+
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
       </Box>

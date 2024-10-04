@@ -1,14 +1,25 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import {categories} from '../../Constants/categories.ts'
 
+// Type definition for the category items
+interface Category {
+  title: string;
+  image: string;
+}
 
-const Freelance_Categories = () => {
-  const [Categories, setCategories] = React.useState(categories);
+// Importing categories
+import { categories } from "../../Constants/categories";
+
+// Freelance_Categories component
+const Freelance_Categories: React.FC = () => {
+  const [Categories, setCategories] = React.useState<Category[]>(categories);
+
+  // Logic to conditionally clear categories (if necessary)
   if (false) {
     setCategories([]);
   }
+
   return (
     <Box
       display="flex"
@@ -16,15 +27,15 @@ const Freelance_Categories = () => {
       alignItems="center"
       flexWrap="nowrap"
       sx={{
-        width: "100%", // Centers the box if it's less than 100% width
-        px: 2, // Adds 16px padding left and right (equivalent to mx: 2)
+        width: "100%", // Ensures the box is responsive
+        px: 2, // Padding
         mb: 2,
         gap: { xs: 1, sm: 2 }, // Responsive gap
       }}
     >
       {Categories.map((category) => (
         <Button
-          key={category}
+          key={category.title} // Use a unique key for each button
           variant="outlined"
           endIcon={<ArrowDropDownIcon />}
           sx={{
@@ -33,7 +44,7 @@ const Freelance_Categories = () => {
             padding: "2px 2px",
             borderRadius: "50px",
             backgroundColor: "white",
-            fontSize: { xs: "22px", sm: "18px" }, // Increased font size
+            fontSize: { xs: "22px", sm: "18px" },
             fontWeight: "normal",
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             textTransform: "none",
@@ -48,7 +59,7 @@ const Freelance_Categories = () => {
             },
           }}
         >
-          {category}
+          {category.title}
         </Button>
       ))}
     </Box>

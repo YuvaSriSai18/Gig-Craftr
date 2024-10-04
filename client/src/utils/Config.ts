@@ -1,20 +1,20 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider,GithubAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCkmmUW_qeoHkqiTsvXIVtdBt4060cd2cE",
-  authDomain: "gigcraftr.firebaseapp.com",
-  projectId: "gigcraftr",
-  storageBucket: "gigcraftr.appspot.com",
-  messagingSenderId: "538650427898",
-  appId: "1:538650427898:web:da0142a7a79bc775576443",
-  measurementId: "G-TQNHQYF9QM"
+  apiKey: "AIzaSyAovK8BuAUayK5HwAJGzjqcCn-C5ZSw7rA",
+  authDomain: "gignooks.firebaseapp.com",
+  projectId: "gignooks",
+  storageBucket: "gignooks.appspot.com",
+  messagingSenderId: "520148796948",
+  appId: "1:520148796948:web:276ccbc40f682041b74901",
+  measurementId: "G-C37GR9MQQ2",
 };
 
 // Initialize Firebase
@@ -25,4 +25,4 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const gitHubProvider = new GithubAuthProvider();
 
-export { auth, provider , gitHubProvider };
+export { auth, provider, gitHubProvider };

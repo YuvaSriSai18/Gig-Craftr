@@ -1,78 +1,38 @@
 // import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import AllRoutes from "./AllRoutes";
-import Chatbot from "../src/components/chatbot/chatbot"
-import { BrowserRouter } from "react-router-dom";
-// import { Box } from "@mui/material";
-// import useMediaQuery from "@mui/material/useMediaQuery";
+import Chatbot from "../src/components/chatbot/chatbot";
+import { BrowserRouter, useLocation } from "react-router-dom";
+import { Box } from "@mui/material";
 
-// function AppContent() {
-//   const location = useLocation();
-//   const isMobile = useMediaQuery("(max-width:600px)");
+function AppContent() {
+  const location = useLocation();
 
-//   const noSidebarRoutes = [
-//     "/skills",
-//     "/projects",
-//     "/blogs",
-//     "/redux-blog",
-//     "/context-vs-redux",
-//     "/websockets-vs-rest",
-//     "/socket-io",
-//     "/getting-started-with-flutterflow",
-//     "/customizing-flutterflow-app",
-//     "/firebase-flutterflow-integration",
-//   ];
+  // Define routes where the Navbar shouldn't be displayed
+  const noNavbarRoutes = ["/view-profile", "/view-project"];
 
-//   const showSidebar = !noSidebarRoutes.some((route) =>
-//     location.pathname.includes(route)
-//   );
+  // Check if the current location matches any of the no-navbar routes
+  const showNavbar = !noNavbarRoutes.some((route) =>
+    location.pathname.includes(route)
+  );
 
-//   return (
-//     <Box
-//       display={"flex"}
-//       flexDirection={"column"}
-//       justifyContent={"space-around"}
-//     >
-//       <Navbar />
-//       <Box
-//         display={"flex"}
-//         flexDirection={{ xs: "column", sm: "row" }}
-//         justifyContent={{ xs: "space-between", sm: "space-around" }}
-//         p={2}
-//       >
-//         {isMobile ? (
-//           <>{showSidebar && <Sidebar />}</>
-//         ) : (
-//           <>
-//             <Sidebar />
-//           </>
-//         )}
-//         <Box
-//           width={{ xs: "100%", sm: "75%" }}
-//           border={"2px solid #000"}
-//           padding={3}
-//           borderRadius={"30px"}
-//           height={"80vh"}
-//           overflow={"hidden"}
-//           sx={{
-//             overflowY: "scroll",
-//           }}
-//           mt={{ xs: 2, md: 0 }}
-//         >
-//           <AllRoutes />
-//         </Box>
-//       </Box>
-//     </Box>
-//   );
-// }
+  return (
+    <Box sx={{ width: "100%", overflowX: "hidden" }}>
+      {" "}
+      {/* Ensure no horizontal overflow */}
+      {/* Conditionally render the Navbar based on the current route */}
+      {showNavbar && <Navbar />}
+      <AllRoutes />
+      <Chatbot />
+    </Box>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
-    <Navbar />
-    <AllRoutes />
-    <Chatbot />
-  </BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

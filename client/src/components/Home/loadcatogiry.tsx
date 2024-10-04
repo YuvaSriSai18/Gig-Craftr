@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import { categories } from "../../Constants/catogiryforhome";
 
 // Type definition for category item
@@ -18,12 +12,15 @@ interface Category {
 const CategoryCard: React.FC<{ item: Category }> = ({ item }) => (
   <Card
     sx={{
-      p:3,
-      borderRadius:5,
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'space-around',
-      width:'250px'
+      p: 3,
+      borderRadius: 5,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      width: {
+        xs: "100%",
+        sm: "250px",
+      },
     }}
   >
     <Box
@@ -33,7 +30,7 @@ const CategoryCard: React.FC<{ item: Category }> = ({ item }) => (
       sx={{
         height: "150px",
         width: "150px",
-        alignSelf:'center',
+        alignSelf: "center",
         borderRadius: "10px",
       }}
     />
@@ -52,14 +49,12 @@ const CategoryGrid: React.FC = () => {
   };
 
   return (
-    <div
-      style={{ padding: "100px", marginBottom: "50px" }}
-    >
+    <div style={{ padding: "100px", marginBottom: "50px" }}>
       <Typography variant="h2" align="center" gutterBottom>
         Choose Different <span style={{ color: "#2979ff" }}>Category</span>
       </Typography>
 
-      <Box display={'flex'} gap={2} flexWrap={'wrap'}>
+      <Box display={"flex"} gap={2} flexWrap={"wrap"}>
         {categories
           .slice(0, visibleCategories)
           .map((category: Category, index: number) => (
@@ -84,4 +79,4 @@ const CategoryGrid: React.FC = () => {
   );
 };
 
-export default CategoryGrid
+export default CategoryGrid;

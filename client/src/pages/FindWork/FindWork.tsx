@@ -56,7 +56,7 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   const [saved, setSaved] = useState<boolean>(false); // State to toggle the save button
   const [commentsOpen, setCommentsOpen] = useState<boolean>(false); // State to manage comments
-  console.log(commentsOpen)
+  console.log(commentsOpen);
   const navigate = useNavigate(); // Initialize navigate hook
 
   const toggleSave = () => {
@@ -69,7 +69,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 
   const handleViewProject = () => {
     // Navigate to the ViewProject page and pass project id or data
-    navigate('/view-project', { state: { project } });
+    navigate("/view-project", { state: { project } });
     // navigate(/view-project/${project.title}, { state: { project } });
   };
 
@@ -229,7 +229,14 @@ export default function FindWork() {
   return (
     <>
       <Box sx={{ padding: "2rem" }}>
-        <Box sx={{ marginBottom: "2rem", display: "flex", gap: 2 }}>
+        <Box
+          sx={{
+            marginBottom: "2rem",
+            display: "flex",
+            gap: 2,
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
           <TextField
             variant="outlined"
             fullWidth

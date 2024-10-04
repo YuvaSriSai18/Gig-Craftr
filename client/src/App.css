@@ -1,4 +1,4 @@
-body{
+/* body{
   background-color: aqua;
 }
 * {
@@ -6,4 +6,7 @@ body{
   padding: 0;
   border: 0;
   box-sizing: border-box;
+} */
+.MuiBox-root {
+  padding: 0;
 }
